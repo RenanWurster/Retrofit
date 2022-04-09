@@ -20,7 +20,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.retrofit.seriesdetail.presentation.SeriesDetail"/>
+        <activity android:name="com.example.retrofit.seriesdetail.presentation.SeriesDetail"
+            android:parentActivityName=".shows.presentation.SeriesActivity"/>
         <activity android:name="com.example.retrofit.seasons.presentation.SeasonActivity"
             />
         <activity android:name="com.example.retrofit.episodedetail.presentation.EpisodesDetail"
