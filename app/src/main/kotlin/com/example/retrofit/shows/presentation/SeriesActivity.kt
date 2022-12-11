@@ -3,8 +3,11 @@ package com.example.retrofit.shows.presentation
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.retrofit.R
 import com.example.retrofit.domain.Series
 import com.example.retrofit.data.network.services
 import com.example.retrofit.databinding.ActivitySeriesBinding
@@ -39,5 +42,24 @@ startActivity(SeriesDetail.createIntent(this,series)) }
                 adapterSeries.submitList(it)
             }
         }
+
+    }
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.main, menu)
+        val searchItem = menu.findItem(R.id.menu_search)
+        if (searchItem != null) {
+            val searchView = searchItem.actionView as android.widget.SearchView
+            searchView.setOnQueryTextListener(object : android.widget.SearchView.OnQueryTextListener{
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    return true
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    return true
+                }
+            })
+        }
+
+        return super.onCreateOptionsMenu(menu)
     }
 }

@@ -12,9 +12,11 @@
         <entry key="app/src/main/res/layout/activity_seasons.xml" value="0.21920289855072464" />
         <entry key="app/src/main/res/layout/activity_series.xml" value="0.1743659420289855" />
         <entry key="app/src/main/res/layout/activity_series_detail.xml" value="0.13728470111448834" />
+        <entry key="app/src/main/res/layout/item_category.xml" value="0.43802083333333336" />
         <entry key="app/src/main/res/layout/item_episodes.xml" value="0.16893115942028986" />
         <entry key="app/src/main/res/layout/item_seasons.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_serie.xml" value="0.2604166666666667" />
+        <entry key="app/src/main/res/menu/main.xml" value="0.4390625" />
       </map>
     </option>
   </component>
