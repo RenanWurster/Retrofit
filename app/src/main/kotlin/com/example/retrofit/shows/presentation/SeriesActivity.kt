@@ -54,7 +54,8 @@ startActivity(SeriesDetail.createIntent(this,series)) }
                     return true
                 }
 
-                override fun onQueryTextChange(newText: String?): Boolean {
+                override fun onQueryTextChange(newText: String): Boolean {
+                    seriesViewModel.onSearch(newText)
                     return true
                 }
             })
