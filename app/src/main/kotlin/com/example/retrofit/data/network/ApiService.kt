@@ -6,6 +6,7 @@ import com.example.retrofit.domain.Series
 import com.example.retrofit.episodedetail.domain.Episodes
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface ApiService {
 
@@ -17,5 +18,8 @@ interface ApiService {
 
     @GET("/seasons/{id}/episodes")
     suspend fun getEpisodes(@Path("id") id : Int): List<Episodes>
+
+    @GET("/search/shows")
+    suspend fun searchShows(@Query("q") query : String): List<Series>
 
 }

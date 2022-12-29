@@ -7,5 +7,9 @@ class SeriesRepository(private val apiService: ApiService) {
     suspend fun getSeries(): List<Series> {
         return apiService.getSeries()
     }
+
+    suspend fun searchShows(name: String) : List<Series> {
+        return apiService.searchShows(name)
+    }
 }
 
