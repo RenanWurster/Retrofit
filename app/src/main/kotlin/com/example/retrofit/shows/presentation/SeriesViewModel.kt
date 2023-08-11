@@ -25,11 +25,14 @@ class SeriesViewModel(private val seriesRepository: SeriesRepository): ViewModel
     fun onSearch(name: String) {
         viewModelScope.launch {
             if (name.isNotEmpty()) {
-                println(seriesRepository.searchShows(name).first())
+                val searchResults = seriesRepository.searchShows(name)
+                _series.value = searchResults
+            } else {
+                // If the search name is empty, reload all series
+                _series.value = emptyList()
             }
-
-
         }
     }
+
 
 }
