@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -15,12 +16,11 @@ import com.example.retrofit.domain.Series
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 class SeriesAdapter(private val callback: (Series) -> Unit) :
-    ListAdapter<Series, SeriesAdapter.SeriesViewHolder>(SeriesAdapter) {
-
+    ListAdapter<Series, SeriesAdapter.SeriesViewHolder>(SeriesDiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SeriesViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        val view = layoutInflater.inflate(R.layout.item_serie, parent, false)
+        val inflater = LayoutInflater.from(parent.context)
+        val view = inflater.inflate(R.layout.item_serie, parent, false)
         return SeriesViewHolder(view)
     }
 
@@ -30,28 +30,29 @@ class SeriesAdapter(private val callback: (Series) -> Unit) :
     }
 
     class SeriesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val seriesImage: ImageView? = itemView.findViewById(R.id.ivSerie)
+        private val seriesText: TextView? = itemView.findViewById(R.id.txtSerie)
 
         @ExperimentalCoroutinesApi
         fun bind(data: Series, callback: (Series) -> Unit) {
-            with(itemView) {
+            seriesText?.text = data.name
 
-                val ivSeries = findViewById<ImageView>(R.id.ivSerie)
-                val txtSeries = findViewById<TextView>(R.id.txtSerie)
-                txtSeries.text = data.name
+            itemView.setOnClickListener {
+                callback.invoke(data)
+            }
 
-                ivSeries.setOnClickListener {
-                    callback.invoke(data)
-                }
-
-                ivSeries.load(data.image.original) {
-                    crossfade(true)
-                    transformations(RoundedCornersTransformation(15f))
+            seriesImage?.let {
+                data.image?.original?.let { imageUrl ->
+                    it.load(imageUrl) {
+                        crossfade(true)
+                        transformations(RoundedCornersTransformation(15f))
+                    }
                 }
             }
         }
     }
 
-    companion object : DiffUtil.ItemCallback<Series>() {
+    private object SeriesDiffCallback : DiffUtil.ItemCallback<Series>() {
         override fun areItemsTheSame(oldItem: Series, newItem: Series): Boolean {
             return oldItem.id == newItem.id
         }
@@ -59,6 +60,5 @@ class SeriesAdapter(private val callback: (Series) -> Unit) :
         override fun areContentsTheSame(oldItem: Series, newItem: Series): Boolean {
             return oldItem == newItem
         }
-
     }
 }
