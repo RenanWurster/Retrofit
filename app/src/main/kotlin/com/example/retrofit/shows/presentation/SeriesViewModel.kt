@@ -29,7 +29,7 @@ class SeriesViewModel(private val seriesRepository: SeriesRepository): ViewModel
                 _series.value = searchResults
             } else {
                 // If the search name is empty, reload all series
-                _series.value = emptyList()
+                _series.value = seriesRepository.getSeries()
             }
         }
     }
