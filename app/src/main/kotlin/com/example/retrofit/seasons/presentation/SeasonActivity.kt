@@ -62,8 +62,8 @@ class SeasonActivity : AppCompatActivity() {
         seasonViewModel = ViewModelProvider(this, seasonViewModelFactory)
             .get(SeasonViewModel::class.java)
 
-        
-        seasonViewModel.getEpisodesById(seasons.id)
+
+        seasons.id?.let { seasonViewModel.getEpisodesById(it) }
         seasonViewModel.episodes.observe(this, Observer {
             episodes -> episodes?.let {
                 episodesAdapter.submitList(it)

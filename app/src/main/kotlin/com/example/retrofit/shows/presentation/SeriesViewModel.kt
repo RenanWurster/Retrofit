@@ -28,8 +28,9 @@ class SeriesViewModel(private val seriesRepository: SeriesRepository): ViewModel
                 val searchResults = seriesRepository.searchShows(name)
                 _series.value = searchResults
             } else {
-                // If the search name is empty, reload all series
-                _series.value = seriesRepository.getSeries()
+                // Se a pesquisa estiver vazia, recarregue todas as séries
+                val allSeries = seriesRepository.getSeries()
+                _series.value = allSeries
             }
         }
     }

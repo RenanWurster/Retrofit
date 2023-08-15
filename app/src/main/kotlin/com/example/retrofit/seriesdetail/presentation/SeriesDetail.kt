@@ -52,7 +52,7 @@ class SeriesDetail : AppCompatActivity() {
 
         series = intent.extras?.get(SERIES_KEY) as Series
 
-        binding.imageFilmDetail.load(series.image.original)
+        binding.imageFilmDetail.load(series.image?.original)
         {
             crossfade(true)
             transformations(RoundedCornersTransformation(15f))
@@ -66,7 +66,7 @@ class SeriesDetail : AppCompatActivity() {
         seriesDetailViewModelFactory = SeriesDetailViewModel.Factory(SeriesDetailRepository(services()))
         seriesDetailViewModel = ViewModelProvider(this, seriesDetailViewModelFactory)
             .get(SeriesDetailViewModel::class.java)
-        seriesDetailViewModel.getSeasonsById(series.id)
+        series.id?.let { seriesDetailViewModel.getSeasonsById(it) }
 
         seriesDetailViewModel.seasons.observe(this, Observer {
                 seasons -> seasons?.let {
