@@ -2,7 +2,7 @@ package com.example.retrofit.data.network
 
 
 import com.example.retrofit.seriesdetail.domain.Seasons
-import com.example.retrofit.domain.Series
+import com.example.retrofit.shows.domain.Series
 import com.example.retrofit.episodedetail.domain.Episodes
 import retrofit2.http.GET
 import retrofit2.http.Path

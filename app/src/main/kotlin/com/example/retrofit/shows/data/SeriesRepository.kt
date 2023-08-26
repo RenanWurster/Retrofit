@@ -1,7 +1,7 @@
 package com.example.retrofit.shows.data
 
 import com.example.retrofit.data.network.ApiService
-import com.example.retrofit.domain.Series
+import com.example.retrofit.shows.domain.Series
 
 class SeriesRepository(private val apiService: ApiService) {
     suspend fun getSeries(): List<Series> {
@@ -11,20 +11,19 @@ class SeriesRepository(private val apiService: ApiService) {
     suspend fun searchShows(name: String): List<Series> {
         val searchResults = apiService.searchShows(name)
         return searchResults.mapNotNull { apiSeries ->
-            if (apiSeries?.name != null && apiSeries?.image != null) {
+            apiSeries.takeIf { it.name != null && it.image != null }?.let { series ->
                 Series(
-                    id = apiSeries.id ?: 0,
-                    name = apiSeries.name,
-                    image = apiSeries.image,
-                    genres = apiSeries.genres,
-                    summary = apiSeries.summary,
-                    type = apiSeries.type
+                    id = series.id ?: throw IllegalArgumentException("Series ID cannot be null"),
+                    name = series.name!!,
+                    image = series.image!!,
+                    genres = series.genres,
+                    summary = series.summary,
+                    type = series.type
                 )
-            } else {
-                null
             }
         }
     }
+
 
 }
 

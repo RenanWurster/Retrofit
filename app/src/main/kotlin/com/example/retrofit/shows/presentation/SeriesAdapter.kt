@@ -5,14 +5,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.RoundedCornersTransformation
 import com.example.retrofit.R
-import com.example.retrofit.domain.Series
+import com.example.retrofit.shows.domain.Series
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 class SeriesAdapter(private val callback: (Series) -> Unit) :

@@ -1,4 +1,4 @@
-package com.example.retrofit.domain
+package com.example.retrofit.shows.domain
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

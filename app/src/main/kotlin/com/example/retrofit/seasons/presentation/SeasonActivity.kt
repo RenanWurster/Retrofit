@@ -10,7 +10,7 @@ import coil.load
 import coil.transform.RoundedCornersTransformation
 import com.example.retrofit.data.network.services
 import com.example.retrofit.databinding.ActivitySeasonsBinding
-import com.example.retrofit.domain.Series
+import com.example.retrofit.shows.domain.Series
 import com.example.retrofit.episodedetail.data.EpisodesRepository
 import com.example.retrofit.episodedetail.domain.Episodes
 import com.example.retrofit.episodedetail.presentation.EpisodesDetail

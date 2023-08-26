@@ -1,7 +1,7 @@
 package com.example.retrofit.shows.presentation
 
 import androidx.lifecycle.*
-import com.example.retrofit.domain.Series
+import com.example.retrofit.shows.domain.Series
 import com.example.retrofit.shows.data.SeriesRepository
 import kotlinx.coroutines.launch
 

@@ -10,13 +10,11 @@ import androidx.lifecycle.ViewModelProvider
 import coil.load
 import coil.transform.RoundedCornersTransformation
 import com.example.retrofit.data.network.services
-import com.example.retrofit.domain.Series
+import com.example.retrofit.shows.domain.Series
 import com.example.retrofit.databinding.ActivitySeriesDetailBinding
 import com.example.retrofit.seriesdetail.data.SeriesDetailRepository
 import com.example.retrofit.seriesdetail.domain.Seasons
 import com.example.retrofit.seasons.presentation.SeasonActivity
-import com.example.retrofit.seasons.presentation.SeasonViewModel
-
 
 class SeriesDetail : AppCompatActivity() {
     private lateinit var series: Series
@@ -32,7 +30,7 @@ class SeriesDetail : AppCompatActivity() {
     companion object {
         private const val SERIES_KEY = "series_key"
 
-        fun createIntent(context: Context, series:Series): Intent {
+        fun createIntent(context: Context, series: Series): Intent {
             val intent = Intent(context, SeriesDetail::class.java)
             intent.putExtra(SERIES_KEY, series)
             return intent
