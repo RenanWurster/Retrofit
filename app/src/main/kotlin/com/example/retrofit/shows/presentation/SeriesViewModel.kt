@@ -1,5 +1,6 @@
 package com.example.retrofit.shows.presentation
 
+import android.util.Log
 import androidx.lifecycle.*
 import com.example.retrofit.shows.domain.Series
 import com.example.retrofit.shows.data.SeriesRepository
@@ -26,6 +27,7 @@ class SeriesViewModel(private val seriesRepository: SeriesRepository): ViewModel
         viewModelScope.launch {
             if (name.isNotEmpty()) {
                 val searchResults = seriesRepository.searchShows(name)
+                Log.d("SeriesViewModel", "Search results: $searchResults")
                 _series.value = searchResults
             } else {
                 // Se a pesquisa estiver vazia, recarregue todas as séries
@@ -34,6 +36,4 @@ class SeriesViewModel(private val seriesRepository: SeriesRepository): ViewModel
             }
         }
     }
-
-
 }
