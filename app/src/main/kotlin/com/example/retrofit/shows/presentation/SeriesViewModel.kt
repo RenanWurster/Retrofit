@@ -28,9 +28,8 @@ class SeriesViewModel(private val seriesRepository: SeriesRepository): ViewModel
             if (name.isNotEmpty()) {
                 val searchResults = seriesRepository.searchShows(name)
                 Log.d("SeriesViewModel", "Search results: $searchResults")
-                _series.value = searchResults
+                _series.value = searchResults.map { it.show }
             } else {
-                // Se a pesquisa estiver vazia, recarregue todas as séries
                 val allSeries = seriesRepository.getSeries()
                 _series.value = allSeries
             }
