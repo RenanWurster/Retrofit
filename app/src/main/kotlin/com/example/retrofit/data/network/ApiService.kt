@@ -4,6 +4,7 @@ package com.example.retrofit.data.network
 import com.example.retrofit.seriesdetail.domain.Seasons
 import com.example.retrofit.shows.domain.Series
 import com.example.retrofit.episodedetail.domain.Episodes
+import com.example.retrofit.shows.domain.SearchSeries
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -20,6 +21,6 @@ interface ApiService {
     suspend fun getEpisodes(@Path("id") id : Int): List<Episodes>
 
     @GET("/search/shows")
-    suspend fun searchShows(@Query("q") query : String): List<Series>
+    suspend fun searchShows(@Query("q") query : String): List<SearchSeries>
 
 }
