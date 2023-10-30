@@ -6,8 +6,8 @@ import android.util.Log
 import android.view.Menu
 import androidx.lifecycle.ViewModelProvider
 import com.example.retrofit.R
+import com.example.retrofit.data.network.ApiServiceRetrofit.services
 import com.example.retrofit.shows.domain.Series
-import com.example.retrofit.data.network.services
 import com.example.retrofit.databinding.ActivitySeriesBinding
 import com.example.retrofit.seriesdetail.presentation.SeriesDetail
 import com.example.retrofit.shows.data.SeriesRepository
@@ -51,14 +51,12 @@ startActivity(SeriesDetail.createIntent(this,series)) }
                 override fun onQueryTextSubmit(query: String?): Boolean {
                     return true
                 }
-
                 override fun onQueryTextChange(newText: String): Boolean {
                     seriesViewModel.onSearch(newText)
                     return true
                 }
             })
         }
-
         return super.onCreateOptionsMenu(menu)
     }
 }

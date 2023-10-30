@@ -8,7 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import coil.load
 import coil.transform.RoundedCornersTransformation
-import com.example.retrofit.data.network.services
+import com.example.retrofit.data.network.ApiServiceRetrofit.services
 import com.example.retrofit.databinding.ActivitySeasonsBinding
 import com.example.retrofit.shows.domain.Series
 import com.example.retrofit.episodedetail.data.EpisodesRepository
