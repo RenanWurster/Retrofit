@@ -4,23 +4,24 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import coil.load
 import coil.transform.RoundedCornersTransformation
-import com.example.retrofit.data.network.ApiServiceRetrofit.services
 import com.example.retrofit.shows.domain.Series
 import com.example.retrofit.databinding.ActivitySeriesDetailBinding
 import com.example.retrofit.seriesdetail.data.SeriesDetailRepository
 import com.example.retrofit.seriesdetail.domain.Seasons
 import com.example.retrofit.seasons.presentation.SeasonActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SeriesDetail : AppCompatActivity() {
     private lateinit var series: Series
     private lateinit var binding: ActivitySeriesDetailBinding
-    private lateinit var seriesDetailViewModel: SeriesDetailViewModel
-    private lateinit var seriesDetailViewModelFactory: SeriesDetailViewModel.Factory
+    private val seriesDetailViewModel: SeriesDetailViewModel by viewModels()
     private val seasonsAdapter = SeasonAdapter(::seasonsClickListener)
 
 
@@ -59,11 +60,6 @@ class SeriesDetail : AppCompatActivity() {
         binding.txtNameFilmDetail.text = series.name
         binding.txtGenresFilmDetail.text = series.genres.toString()
 
-
-
-        seriesDetailViewModelFactory = SeriesDetailViewModel.Factory(SeriesDetailRepository(services()))
-        seriesDetailViewModel = ViewModelProvider(this, seriesDetailViewModelFactory)
-            .get(SeriesDetailViewModel::class.java)
         series.id?.let { seriesDetailViewModel.getSeasonsById(it) }
 
         seriesDetailViewModel.seasons.observe(this, Observer {

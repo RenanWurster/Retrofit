@@ -4,18 +4,19 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.example.retrofit.R
-import com.example.retrofit.data.network.ApiServiceRetrofit.services
 import com.example.retrofit.shows.domain.Series
 import com.example.retrofit.databinding.ActivitySeriesBinding
 import com.example.retrofit.seriesdetail.presentation.SeriesDetail
 import com.example.retrofit.shows.data.SeriesRepository
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SeriesActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySeriesBinding
-    private lateinit var seriesViewModel: SeriesViewModel
-    private lateinit var seriesViewModelFactory: SeriesViewModel.Factory
+    private val seriesViewModel: SeriesViewModel by viewModels()
     private val adapterSeries = SeriesAdapter(::seriesClickListener)
 
 
@@ -29,10 +30,6 @@ startActivity(SeriesDetail.createIntent(this,series)) }
         setContentView(binding.root)
 
         binding.rvSeries.adapter = adapterSeries
-
-        seriesViewModelFactory = SeriesViewModel.Factory(SeriesRepository(services()))
-        seriesViewModel = ViewModelProvider(this, seriesViewModelFactory)
-            .get(SeriesViewModel::class.java)
 
         seriesViewModel.series.observe(this) { series ->
             series?.let {

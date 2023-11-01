@@ -3,10 +3,9 @@ package com.example.retrofit.shows.data
 import com.example.retrofit.data.network.ApiService
 import com.example.retrofit.shows.domain.SearchSeries
 import com.example.retrofit.shows.domain.Series
+import javax.inject.Inject
 
-
-
-class SeriesRepository(private val apiService: ApiService) {
+class SeriesRepository @Inject constructor(private val apiService: ApiService) {
     suspend fun getSeries(): List<Series> {
         return apiService.getSeries()
     }

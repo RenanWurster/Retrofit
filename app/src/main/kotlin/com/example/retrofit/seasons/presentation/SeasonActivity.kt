@@ -8,24 +8,23 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import coil.load
 import coil.transform.RoundedCornersTransformation
-import com.example.retrofit.data.network.ApiServiceRetrofit.services
 import com.example.retrofit.databinding.ActivitySeasonsBinding
 import com.example.retrofit.shows.domain.Series
 import com.example.retrofit.episodedetail.data.EpisodesRepository
 import com.example.retrofit.episodedetail.domain.Episodes
 import com.example.retrofit.episodedetail.presentation.EpisodesDetail
 import com.example.retrofit.seriesdetail.domain.Seasons
+import dagger.hilt.android.AndroidEntryPoint
+import androidx.activity.viewModels
 
 
+@AndroidEntryPoint
 class SeasonActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySeasonsBinding
     private lateinit var seasons: Seasons
     private lateinit var episodes: Episodes
     private lateinit var serie: Series
-    private val apiService = services()
-    private val repository = EpisodesRepository(apiService)
-    private val seasonViewModelFactory = SeasonViewModel.Factory(repository)
-    private lateinit var seasonViewModel: SeasonViewModel
+    private val seasonViewModel: SeasonViewModel by viewModels()
     private  var episodesAdapter = EpisodesAdapter(::episodesClickListener)
 
 
@@ -58,10 +57,6 @@ class SeasonActivity : AppCompatActivity() {
             crossfade(true)
             transformations(RoundedCornersTransformation(15f))
         }
-
-        seasonViewModel = ViewModelProvider(this, seasonViewModelFactory)
-            .get(SeasonViewModel::class.java)
-
 
         seasons.id?.let { seasonViewModel.getEpisodesById(it) }
         seasonViewModel.episodes.observe(this, Observer {

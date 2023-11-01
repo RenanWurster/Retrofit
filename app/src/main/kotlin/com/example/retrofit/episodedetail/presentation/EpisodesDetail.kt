@@ -3,16 +3,19 @@ package com.example.retrofit.episodedetail.presentation
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import coil.load
 import com.example.retrofit.databinding.ActivityEpisodesDetailBinding
 import com.example.retrofit.episodedetail.domain.Episodes
 import com.example.retrofit.seasons.presentation.SeasonViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class EpisodesDetail : AppCompatActivity() {
 
     //private lateinit var seasonViewModelFactory: SeasonViewModelFactory
-    private lateinit var seasonViewModel: SeasonViewModel
+    private val seasonViewModel: SeasonViewModel by viewModels()
     private lateinit var episodes: Episodes
     private lateinit var binding: ActivityEpisodesDetailBinding
 

@@ -4,15 +4,12 @@ import android.util.Log
 import androidx.lifecycle.*
 import com.example.retrofit.shows.domain.Series
 import com.example.retrofit.shows.data.SeriesRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SeriesViewModel(private val seriesRepository: SeriesRepository): ViewModel() {
-
-    class Factory(private val seriesRepository: SeriesRepository) : ViewModelProvider.Factory {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-           return SeriesViewModel(seriesRepository) as T
-        }
-    }
+@HiltViewModel
+class SeriesViewModel @Inject constructor(private val seriesRepository: SeriesRepository): ViewModel() {
 
     private val _series = MutableLiveData<List<Series>>()
     val series : LiveData<List<Series>> = _series

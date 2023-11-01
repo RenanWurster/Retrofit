@@ -5,9 +5,12 @@ import com.example.retrofit.episodedetail.data.EpisodesRepository
 import com.example.retrofit.seasons.presentation.SeasonViewModel
 import com.example.retrofit.seriesdetail.data.SeriesDetailRepository
 import com.example.retrofit.seriesdetail.domain.Seasons
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SeriesDetailViewModel (private val detailRepository: SeriesDetailRepository): ViewModel() {
+@HiltViewModel
+class SeriesDetailViewModel @Inject constructor(private val detailRepository: SeriesDetailRepository): ViewModel() {
 
     class Factory(private val repository: SeriesDetailRepository) : ViewModelProvider.Factory{
         override fun <T : ViewModel> create(modelClass: Class<T>): T {

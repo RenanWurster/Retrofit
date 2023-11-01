@@ -3,9 +3,12 @@ package com.example.retrofit.seasons.presentation
 import androidx.lifecycle.*
 import com.example.retrofit.episodedetail.data.EpisodesRepository
 import com.example.retrofit.episodedetail.domain.Episodes
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SeasonViewModel (private val episodesRepository: EpisodesRepository): ViewModel() {
+@HiltViewModel
+class SeasonViewModel @Inject constructor(private val episodesRepository: EpisodesRepository): ViewModel() {
 
     class Factory (private val episodesRepository: EpisodesRepository) : ViewModelProvider.Factory{
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
